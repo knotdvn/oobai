@@ -51,8 +51,12 @@ public class OobSystem {
     //This runs first,
     //the paramter is the int N number of oobs to start with
     public void initialize_System(int nOobs){
+    	//stat master has the same number of rules
+    	
+    	statMaster.synchRuleStats(ruler.nRules);
         //give rules access to statMaster
         ruler.statMaster = statMaster;
+        
         
         
         Oob theAncestor = null;
@@ -79,7 +83,8 @@ public class OobSystem {
             
             //add Rules Module
             theAncestor.ruler = ruler;
-            theAncestor.setRulesAllTrue();
+            //theAncestor.setRulesAllTrue();
+            theAncestor.setRulesAllRandom();
             
             //add Decision Making Module
             theAncestor.dM = new DecisionMakerFIFO();
@@ -116,6 +121,24 @@ public class OobSystem {
             
         }//end for X cycles
         
+        
+        //System halts due to out of cycles
+        
+        statMaster.log("\n----------------------\nSystem Halting at:");
+        statMaster.log("Century: " + century + " Year: " + years + " Clock: " + clock);
+        statMaster.log("Number of Living Oobs = " + allLivingOobs.size());
+       statMaster.log("Number of Dead Oobs = " + allDeadOobs.size());
+       
+       logDNA_All_Living_Oobs();
+       logDNA_All_Dead_Oobs();
+       
+       statMaster.log("------------------\nRule #: Frequency");
+       for(int i =0; i <statMaster.nRules; i++){
+    	   statMaster.log("Rule " + i + ": " + statMaster.rules[i]);
+    	   
+       }//end for all rules
+       
+        
     }//end method turn Clock X
     
     
@@ -143,7 +166,7 @@ public class OobSystem {
         
         //time keeping is done
         
-        
+        //if empty of oobs halt system
          if(allLivingOobs.isEmpty()){
             System.out.println("\n--------------");
             System.out.println("-Oob System Run:");
@@ -152,7 +175,7 @@ public class OobSystem {
             clockON = false;
              System.out.println("No Oobs Alive, Clocking OFF");
          }else{
-          
+          //there are oobs who need to be activated
              
              //tout le monde est une victim
             Oob victim = null; 
@@ -180,7 +203,7 @@ public class OobSystem {
               //his life is exhausted an amount
           victim.nutrition = victim.nutrition - 5;
           
-          
+          //now the oob gets to act on its on behalf!
           victim.live_Breathe_Activate();
             
           
@@ -215,6 +238,41 @@ public class OobSystem {
     }//end print all living oobs
     
     
+    public void logDNA_All_Living_Oobs(){
+        if(allLivingOobs.isEmpty()){
+            System.out.println("\n--------------");
+            System.out.println("-All Living Oobs:");
+            System.out.println("-NULL");
+            System.out.println("--------------");
+        }else{
+          
+        	statMaster.log("\n-------------\nLiving Oob DNA:");
+        for(int i = 0; i < allLivingOobs.size(); i++){
+            
+        	
+            statMaster.log(allLivingOobs.get(i).toDNAString());
+            
+        }//for all Living Oobs
+        }//end else empty
+    }//end log dna all living oobs
     
+    
+    public void logDNA_All_Dead_Oobs(){
+        if(allDeadOobs.isEmpty()){
+            System.out.println("\n--------------");
+            System.out.println("-All Dead Oobs:");
+            System.out.println("-NULL");
+            System.out.println("--------------");
+        }else{
+          
+        	statMaster.log("\n-------------\nDead Oob DNA:");
+        for(int i = 0; i < allDeadOobs.size(); i++){
+            
+        	
+            statMaster.log(allDeadOobs.get(i).toDNAString());
+            
+        }//for all Living Oobs
+        }//end else empty
+    }//end log dna all living oobs
     
 }//end class OobSystem

@@ -16,6 +16,10 @@ public class StatMaster {
     ArrayList<String> logItems = new ArrayList();
     String testKey = "No Key Given";
     
+    //this tracks stats for rules being fired
+    public int[] rules = null;
+    public int nRules = 0;//number of rules
+    
     
     
     public void initialize_Stat_Master(String key){
@@ -46,6 +50,18 @@ public class StatMaster {
         
         
     }//
+
+    //this creates the array of rules for stat purposes
+	public void synchRuleStats(int nR) {
+	nRules = nR;
+	
+		rules = new int[nRules];
+		
+	}//end function synch rule stats
     
+	
+	
+	
+	
     
 }//end class StatMaster

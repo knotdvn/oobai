@@ -4,6 +4,8 @@
  */
 package oobai.Oob;
 
+import java.util.Random;
+
 import oobai.DecisionMaker.DecisionMakerFIFO;
 import oobai.Rules.Rules;
 import oobai.Stats.StatMaster;
@@ -51,9 +53,10 @@ public class Oob {
     public boolean[] sensor = null;
     
     
-    
     //Targets
     public Oob target = null;
+    
+    Random rNg = new Random();
     
     //How do we Set Rules
     public void setRulesAllTrue(){
@@ -68,11 +71,36 @@ public class Oob {
     }//end method setRules
     
     
+    
+    //How do we Set Rules Randomly
+    //this ensure that not all oobs
+    //have access to the same rules.
+    public void setRulesAllRandom(){
+        sensor = new boolean[ruler.nRules];
+        
+        int chance = 0;
+        for(int i = 0; i < ruler.nRules; i++){
+        	
+        	chance = rNg.nextInt(10);
+        	
+        	if(chance<5){
+        		sensor[i]=false;
+        	}else{
+        	
+            sensor[i] = true;
+            
+        	}//end else rand choice
+            
+        }//end for NRules
+        
+    }//end method setRules
+    
+    
     //Oob system runs this method
     public void live_Breathe_Activate(){
         
         
-        for(int i = 0; i <sensor.length;i++){
+        for(int i = 0; i < sensor.length;i++){
             
             //If we have sensor I
             if(sensor[i]){
@@ -115,6 +143,18 @@ public class Oob {
         
         
     }//end print Oob;
+    
+    
+    public String toDNAString(){
+    	String dna = "";
+    	
+    	dna = "()~~[ " + name + "::-Fight-<" + fight + ">-Compel-<" + compel + ">-Finding-<" + finding + ">-";
+    	for (int i = 0; i< sensor.length  ; i++){
+    	dna = dna + "R" + i + "-<" + sensor[i] + ">-";
+    	}
+    	dna = dna + "--]";
+    	return dna;
+    }//end toDNAString
     
 }//end class Oob
 

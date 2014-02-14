@@ -19,7 +19,7 @@ import oobai.Stats.StatMaster;
 //given a situation
 public class Rules {
     public StatMaster statMaster = null;
-    public int nRules = 2; //how many rules are there right now 0
+    public int nRules = 3; //number of rules
     public Random rndG = new Random(141990);//My Sisters birthday
     
     
@@ -34,6 +34,8 @@ public class Rules {
             case 0: fired = ifHungryANDHasFood(oob)  ; break;
             
             case 1: fired = ifLowFood(oob); break;
+            
+            case 2: fired = ifLowFood(oob); break;
                 
             default: fired = false; break;
                 
@@ -52,6 +54,8 @@ public class Rules {
             case 0: thenEat(oob)  ; break;
               
             case 1: thenFindFood(oob); break;
+            
+            case 2: thenFindandEat(oob); break;
                 
             default: ; break;
                 
@@ -59,9 +63,10 @@ public class Rules {
         
        
     }//end method run Action
-    
-    //---------------------------------------------------
-    //Rule 1----------------------------------------------
+
+
+	//---------------------------------------------------
+    //Rule 0----------------------------------------------
     
     //if hungryhasfood
     private Boolean ifHungryANDHasFood(Oob oob){
@@ -86,16 +91,16 @@ public class Rules {
             oob.foodAmt = oob.foodAmt -5;
         }//end else littl/lot food
         
-        statMaster.log("Oob: " + oob.name + " has eaten!");
+        statMaster.rules[0]++;
         
     }//end thenEat
 
- //Rule1----------------------------------------------------------------
+ //Rule0----------------------------------------------------------------
  //---------------------------------------------------------------------
  
     
  //---------------------------------------------------------------------
-//Rule2----------------------------------------------------------------
+//Rule1----------------------------------------------------------------
     
     private boolean ifLowFood(Oob oob) {
         if(oob.foodAmt < 50){
@@ -112,15 +117,37 @@ public class Rules {
         //did the Oob find food ?
         if(oob.finding >= rndG.nextInt(99)){
             oob.foodAmt =oob.foodAmt + 10;
-            statMaster.log("Oob: " + oob.name + " has found food!");
+          
         }
-        
+        statMaster.rules[1]++;
     }//end then find food
     
+  //--Rule 1------------------------------------------------------------------
+    //---------------------------------------------------------------------
+    
+   //--------------------------------------------------------------------------
+   //-Rule 2-----------------------------------------------------------------
     
     
-  //Rule2----------------------------------------------------------------
- //---------------------------------------------------------------------   
     
+    //IF low food! THEN find and eat
+    
+    
+    //this rule builds upon the foraging rule
+    //allowing an oob to find food and eat it
+    //in a single cycle
+    private void thenFindandEat(Oob oob) {
+		thenFindFood(oob);
+		thenEat(oob);
+		
+		//Since we use other rules we decrement their effect
+		statMaster.rules[0]--;
+		statMaster.rules[1]--;
+		//increment stats for us
+		statMaster.rules[2]++;
+	}//end findandeat
+
+    //--Rule 2------------------------------------------------------------------
+    //---------------------------------------------------------------------
     
 }//end class Rules

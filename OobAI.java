@@ -31,7 +31,7 @@ public class OobAI {
         oS.initialize_System(10);
         oS.print_All_Living_Oobs();
         System.out.println("Turning Clock");
-        oS.turn_Clock_X(500);
+        oS.turn_Clock_X(5000);
         statMaster.print_log();
         
         
