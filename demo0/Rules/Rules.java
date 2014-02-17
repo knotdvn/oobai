@@ -2,12 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package oobai.demo0.Rules;
+package Rules;
 
 import java.util.Random;
 
-import oobai.demo0.Oob.Oob;
-import oobai.demo0.Stats.StatMaster;
+import Oob.Oob;
+import Stats.StatMaster;
 
 /**
  *

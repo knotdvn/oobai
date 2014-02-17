@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package oobai.demo0.DecisionMaker;
+package DecisionMaker;
 
 import java.util.ArrayList;
 
-import oobai.demo0.Oob.Oob;
-import oobai.demo0.Rules.Rules;
-import oobai.demo0.Stats.StatMaster;
+import Oob.Oob;
+import Rules.Rules;
+import Stats.StatMaster;
 
 /**
  *

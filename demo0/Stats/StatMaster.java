@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package oobai.demo0.Stats;
+package Stats;
 
 import java.util.ArrayList;
 

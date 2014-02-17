@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package oobai.demo0;
 
-import oobai.demo0.Stats.StatMaster;
+
+import Stats.StatMaster;
 
 
 
