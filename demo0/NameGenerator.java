@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package oobai;
+package oobai.demo0;
 
 import java.util.Random;
 
