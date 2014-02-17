@@ -21,7 +21,7 @@ public class DecisionMakerFIFO {
     //this one is a FIFO
     
     //actions are added
-    public ArrayList<Integer> applicableActions = new ArrayList();//
+    public ArrayList<Integer> applicableActions = new ArrayList<Integer>();//
     
     //rule list
     public Rules ruler = null;

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 //this holds our data!
 public class StatMaster {
-    ArrayList<String> logItems = new ArrayList();
+    ArrayList<String> logItems = new ArrayList<String>();
     String testKey = "No Key Given";
     
     //this tracks stats for rules being fired

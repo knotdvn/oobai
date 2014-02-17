@@ -17,8 +17,8 @@ import oobai.Stats.StatMaster;
 public class OobSystem {
     
     //The Oobs
-    public ArrayList<Oob> allLivingOobs = new ArrayList();
-    public ArrayList<Oob> allDeadOobs = new ArrayList();
+    public ArrayList<Oob> allLivingOobs = new ArrayList<Oob>();
+    public ArrayList<Oob> allDeadOobs = new ArrayList<Oob>();
     
     //Stat Master
     public StatMaster statMaster = null;
@@ -180,7 +180,7 @@ public class OobSystem {
              //tout le monde est une victim
             Oob victim = null; 
             int oobSize = allLivingOobs.size();
-           for(int i = 0; i < allLivingOobs.size(); i++){
+           for(int i = 0; i < oobSize; i++){
             
             victim = allLivingOobs.get(i); //grab the victim
             //has it been a year? if so AGE!!
